@@ -2,7 +2,7 @@ import requests
 
 ## use nobitex api
 
-class Market:
+class Market_call:
     BASE_URL = "https://apiv2.nobitex.ir"
 
     def __init__(self):
