@@ -1,19 +1,15 @@
 import json
 
-class Market_parser:
-    def __init__(self) -> None:
-        pass
+def parse_market(data):
+    table = []
 
-    def parse_market(self, data):
-        table = []
+    for symbol, info in data["stats"].items():
 
-        for symbol, info in data["stats"].items():
+        table.append({
+            "symbol": symbol,
+            # "price": f"{(int(info["latest"])//10):,}", # for change rial to toman
+            "price": info["latest"],
+            "change": info["dayChange"]
+        })
 
-            table.append({
-                "symbol": symbol,
-                "price": info["latest"],
-                "chage": info["dayChange"]
-            })
-
-        return table
-
+    return table
