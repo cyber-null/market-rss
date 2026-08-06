@@ -1,34 +1,39 @@
 import requests
 
-def get_market_price(src, dst="rls"):
-    url = "https://apiv2.nobitex.ir/market/stats"
-    params = {
-        "srcCurrency": src,
-        "dstCurrency": dst
-    }
-    headers = {
-        'Accept': 'application/json',
-        # 'User-Agent': 'TraderBot/MyBot-1.0.0'
-    }
+## use nobitex api
 
-    try:
-        # session = requests.session()
-        respons = requests.get(
-            url,
-            headers=headers,
-            params=params
-        )
-        respons.raise_for_status()
+class Market:
+    BASE_URL = "https://apiv2.nobitex.ir"
 
-        data = respons.json()
-        price = data["stats"][f"{src}-{dst}"]["latest"]
+    def __init__(self):
+        self.session = requests.Session()
 
-        return price
-
-    except Exception as error:
-        return error
+        self.session.headers.update({
+            'Accept': 'application/json',
+            # 'User-Agent': 'TraderBot/MyBot-1.0.0'
+        })
 
 
-if __name__ == "__main__":
-    market = get_market_price("usdt")
-    print(market)
+    def get_market_price(self, currnncies, dst="rls"):
+
+        url = f"{self.BASE_URL}/market/stats"
+
+        params = {
+            "srcCurrency": ",".join(currnncies),
+            "dstCurrency": dst
+        }
+
+        try:
+            respons = self.session.get(
+                url,
+                params=params
+            )
+
+            respons.raise_for_status()
+
+            return respons.json()
+
+        except requests.RequestException as error:
+             raise RuntimeError(
+                f"Nobitex API error: {error}"
+            )
