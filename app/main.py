@@ -16,7 +16,7 @@ def main():
     )
 
     # parse data
-    parsed = parse_market(data=data)
+    parsed = parse_market(data)
 
     # create table
     print_table(parsed)
