@@ -10,7 +10,7 @@ class Market_call:
 
         self.session.headers.update({
             'Accept': 'application/json',
-            # 'User-Agent': 'TraderBot/MyBot-1.0.0'
+            'User-Agent': 'TraderBot/MyBot-1.0.0'
         })
 
 
