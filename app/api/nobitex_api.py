@@ -1,4 +1,7 @@
 import requests
+import logging
+
+log = logging.getLogger(__name__)
 
 ## use nobitex api
 
@@ -24,6 +27,7 @@ class Market_call:
         }
 
         try:
+            log.info("GET post API")
             respons = self.session.get(
                 url,
                 params=params
