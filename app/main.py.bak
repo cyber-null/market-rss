@@ -1,0 +1,50 @@
+# setup and initinals logging
+from log_config import setup_logging
+setup_logging()
+
+from api.nobitex_api import Market_call
+from parser.nobitex_parser import nobit_parse
+from rendering.rss import gen_rss
+from server.flask_server import server_start
+
+import logging
+import time
+
+log = logging.getLogger(__name__)
+
+def main():
+    client = Market_call()
+
+    # log.info("get market price from nobitex API")
+    data = client.get_market_price(
+        [
+            "btc",
+            "usdt"
+        ],
+        # "usdt" # rls(default) or usdt
+    )
+
+    # log.info("parse nobitex API data")
+    data_parsed = nobit_parse(data)
+
+    print(data_parsed)
+
+    rss = gen_rss(data_parsed)
+
+    server_start(rss)
+
+
+if __name__ == "__main__":
+    log.info("start Program")
+    main()
+    # while True:
+    #     try:
+    #         main()
+
+    #     except Exception as error:
+    #         raise RuntimeError(
+    #             f"Error: {error}"
+    #         )
+
+    log.info("sleep time!!")
+    #     time.sleep(60)
