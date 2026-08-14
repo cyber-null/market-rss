@@ -42,6 +42,7 @@ def run(interval=300):
     while True:
         try:
             update()
+
         except Exception as error:
             log.error(f"Update Failed: {error}")
 
