@@ -1,6 +1,8 @@
 from feedgen.feed import FeedGenerator
 from datetime import datetime, timezone
 
+import uuid
+
 
 def gen_rss(data):
     fg = FeedGenerator()
@@ -14,6 +16,8 @@ def gen_rss(data):
 
     for item in data:
         entry = fg.add_entry()
+
+        entry.id(str(uuid.uuid4()))
 
         entry.title(f"Price: {item['symbol']}")
 
