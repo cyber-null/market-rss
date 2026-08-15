@@ -1,9 +1,10 @@
+from config import LOG_LEVEL
+
 import logging
 import sys
-import os
+
 
 def setup_logging():
-    level = os.getenv("LOG_LEVEL", "INFO").upper()
 
     formatter = logging.Formatter(
         "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
@@ -13,7 +14,7 @@ def setup_logging():
     conole_handler.setFormatter(formatter)
 
     root_logger = logging.getLogger()
-    root_logger.setLevel(level)
+    root_logger.setLevel(LOG_LEVEL)
     
     if not root_logger.handlers:
         root_logger.addHandler(conole_handler)
