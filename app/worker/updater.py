@@ -1,6 +1,7 @@
 from api.nobitex_api import Market_call
 from parser.nobitex_parser import nobit_parse
 from rendering.rss import gen_rss
+from config import MARKET_SYMBOLS, QUOTE_CURRENCY
 
 import time
 
@@ -16,14 +17,12 @@ def update():
     log.info("Call nobitex API")
     client = Market_call()
     data = client.get_market_price(
-        [
-            "btc",
-            "usdt"
-        ],
-        # "usdt" # rls(default) or usdt
+        MARKET_SYMBOLS,
+        QUOTE_CURRENCY # rls(default) or usdt
     )
 
     log.info("parse nobitex API data")
+
     data_parsed = nobit_parse(data)
     log.debug(f"Parsed Data: {data_parsed}")
 
