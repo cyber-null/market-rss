@@ -10,6 +10,7 @@ import threading
 import logging
 log = logging.getLogger(__name__)
 
+
 def main():
     updater_thread = threading.Thread(
         target=run,
@@ -27,5 +28,5 @@ def main():
 
 
 if __name__ == "__main__":
-    log.info("start Program")
+    log.info("------ # START PROGRAM # -----")
     main()
