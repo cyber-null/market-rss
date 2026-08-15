@@ -22,7 +22,7 @@ def gen_rss(data):
         entry.title(f"Price: {item['symbol']}")
 
         entry.description(
-            f"| Price: {item['price']} |"
+            f"| Price: {float(item['price']):,} |\n"
             f"| Change%: {item['change']} |"
         )
 
