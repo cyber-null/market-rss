@@ -25,13 +25,12 @@ def update():
 
     log.info("parse nobitex API data")
     data_parsed = nobit_parse(data)
-
-    print(data_parsed)
+    log.debug(data_parsed)
 
     current_rss = gen_rss(data_parsed)
+    log.debug(current_rss)
 
     log.info("RSS Updated")
-    # print(f"-------# {current_rss} # -----------")
 
 
 def get_current_rss():
