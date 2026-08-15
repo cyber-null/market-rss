@@ -7,9 +7,6 @@ app = Flask(__name__)
 def server_start():
     data = get_current_rss()
 
-    print(f"DATA: {data}")
-    print(f"type: {type(data)}")
-
     if data is None:
         return "RSS is not ready yet", 503
 
