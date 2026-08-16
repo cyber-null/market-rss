@@ -1,6 +1,8 @@
 from feedgen.feed import FeedGenerator
-from datetime import datetime, timezone
+from config import TZ
 
+from datetime import datetime
+from zoneinfo import ZoneInfo
 import uuid
 
 
@@ -26,7 +28,7 @@ def gen_rss(data):
             f"| Change%: {item['change']} |"
         )
 
-        entry.pubDate(datetime.now(timezone.utc))
+        entry.pubDate(datetime.now(ZoneInfo(TZ)))
 
 
     return fg.rss_str(
