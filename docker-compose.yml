@@ -1,0 +1,17 @@
+services:
+  market-rss:
+    image: ghcr.io/cyber-null/market-rss:latest
+    container_name: market-rss
+    restart: unless-stopped
+
+    environment:
+      TZ: ${TZ:-UTC}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+
+      # MARKET_SYMBOLS: ${MARKET_SYMBOLS}
+      # QUOTE_CURRENCY: ${QUOTE_CURRENCY}
+
+      # UPDATE_INTERVAL: ${UPDATE_INTERVAL}
+
+      # APP_HOST: ${APP_HOST}
+      # APP_PORT: ${APP_PORT}
