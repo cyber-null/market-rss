@@ -1,5 +1,6 @@
 import os
 
+TZ = os.getenv("TZ", "UTC")
 
 MARKET_SYMBOLS = os.getenv("MARKET_SYMBOLS", "usdt").split(",")
 QUOTE_CURRENCY = os.getenv("QUOTE_CURRENCY", "rls")
