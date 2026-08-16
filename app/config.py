@@ -1,6 +1,7 @@
 import os
 
-MARKET_SYMBOLS = os.getenv("MARKET_SYMBOL", "usdt").split(",")
+
+MARKET_SYMBOLS = os.getenv("MARKET_SYMBOLS", "usdt").split(",")
 QUOTE_CURRENCY = os.getenv("QUOTE_CURRENCY", "rls")
 
 UPDATE_INTERVAL = int(os.getenv("UPDATE_INTERVAL", "300"))
