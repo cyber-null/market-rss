@@ -2,7 +2,7 @@
 from log_config import setup_logging
 setup_logging()
 
-from config import UPDATE_INTERVAL, APP_HOST, APP_PORT
+from config.env_config import UPDATE_INTERVAL, APP_HOST, APP_PORT
 from server.flask_server import server_start, app
 from worker.updater import run, current_rss
 

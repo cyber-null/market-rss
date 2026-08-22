@@ -1,5 +1,5 @@
 from feedgen.feed import FeedGenerator
-from config import TZ
+from config.env_config import TZ
 
 from datetime import datetime
 from zoneinfo import ZoneInfo
