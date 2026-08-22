@@ -1,7 +1,7 @@
 from api.nobitex_api import Market_call
 from parser.nobitex_parser import nobit_parse
 from rendering.rss import gen_rss
-from config import MARKET_SYMBOLS, QUOTE_CURRENCY
+from config.env_config import MARKET_SYMBOLS, QUOTE_CURRENCY
 
 import time
 
