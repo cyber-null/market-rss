@@ -1,9 +1,13 @@
-from feedgen.feed import FeedGenerator
 from config.env_config import TZ
+from feedgen.feed import FeedGenerator
+from rendering.format import format_rss_description
 
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import uuid
+import logging
+
+log = logging.getLogger(__name__)
 
 
 def gen_rss(data):
@@ -16,19 +20,21 @@ def gen_rss(data):
         rel="self"
     )
 
-    for item in data:
-        entry = fg.add_entry()
+    log.info("Create entry")
 
-        entry.id(str(uuid.uuid4()))
+    entry = fg.add_entry()
 
-        entry.title(f"Price: {item['symbol']}")
+    entry.id(str(uuid.uuid4()))
 
-        entry.description(
-            f"| Price: {float(item['price']):,} |\n"
-            f"| Change%: {item['change']} |"
-        )
+    entry.title(f"Market Price: {datetime.now(ZoneInfo(TZ))}")
 
-        entry.pubDate(datetime.now(ZoneInfo(TZ)))
+    log.info("Create description")
+    description = format_rss_description(data)
+
+    log.debug(f"description has been created: {description}")
+    entry.description(description)
+
+    entry.pubDate(datetime.now(ZoneInfo(TZ)))
 
 
     return fg.rss_str(
