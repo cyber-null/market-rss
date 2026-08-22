@@ -1,4 +1,4 @@
-from config import LOG_LEVEL
+from config.env_config import LOG_LEVEL
 
 import logging
 import sys

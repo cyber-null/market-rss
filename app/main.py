@@ -1,5 +1,5 @@
 # setup and initinals logging
-from log_config import setup_logging
+from config.log_config import setup_logging
 setup_logging()
 
 from config.env_config import UPDATE_INTERVAL, APP_HOST, APP_PORT
